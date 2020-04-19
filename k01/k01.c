@@ -8,7 +8,7 @@
 }
  double var_online(double val,double ave,double square_ave,double n){
     return (((n-1)*square_ave/n)+(val*val/n))-(((n-1)*ave/n)+(val/n))*(((n-1)*ave/n)+(val/n));
-}
+ }
 
 
 
