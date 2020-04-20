@@ -4,7 +4,6 @@
 #include <math.h>
 
 extern double ave_online(double val,double ave,double n);
-
 extern double var_online(double val,double ave,double square_ave,double n);
 
 int main(void)
