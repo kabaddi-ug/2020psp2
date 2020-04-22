@@ -3,16 +3,8 @@
 #include <string.h>
 #include <math.h>
 
- double ave_online(double val,double ave,double n){
-     return (((n-1)/n)*ave)+(val/n);
-}
- double var_online(double val,double ave,double square_ave,double n){
-    return (((n-1)*square_ave/n)+(val*val/n))-(((n-1)*ave/n)+(val/n))*(((n-1)*ave/n)+(val/n));
- }
-
-
-
-
+extern double ave_online(double val,double ave,double n);
+extern double var_online(double val,double ave,double square_ave,double n);
 
 int main(void)
 {
@@ -38,31 +30,29 @@ int main(void)
         
         a=ave_online( val,ave,n);
         b=var_online( val, ave, square_ave,n);
-         c=n*b/(n-1);
+        c=n*b/(n-1);
         square_ave=ave_online(val*val,square_ave,n);
         n=n+1;
         ave=a;
         
     }
 
-
-    
-
-
-
-    
-
     if(fclose(fp) == EOF){
         fputs("file close error\n",stderr);
         exit(EXIT_FAILURE);
     }
 
-printf("average:%f\n",a);
-printf("variance:%f\n",b);
-printf("est.average:%f\n",a);
-printf("est.variance:%f\n",c);
+    printf("average:%f\n",a);
+    printf("variance:%f\n",b);
+    printf("est.average:%f\n",a);
+    printf("est.variance:%f\n",c);
     return 0;
-
-
 }
 
+double ave_online(double val,double ave,double n){
+    return (((n-1)/n)*ave)+(val/n);
+}
+
+double var_online(double val,double ave,double square_ave,double n){
+    return (((n-1)*square_ave/n)+(val*val/n))-(((n-1)*ave/n)+(val/n))*(((n-1)*ave/n)+(val/n));
+}
