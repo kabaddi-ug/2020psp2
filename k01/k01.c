@@ -8,10 +8,10 @@ extern double var_online(double val,double ave,double square_ave,double n);
 
 int main(void)
 {
-    double val,ave,n=1,square_ave=0, a,b,c;
+    double val,ave=0,square_ave=0, average=0,variance=0,estvariance=0;
+    int n=1;
     char fname[FILENAME_MAX];
     char buf[256];
-    square_ave=0;
     FILE* fp;
 
     printf("input the filename of sample:");
@@ -28,12 +28,12 @@ int main(void)
     while(fgets(buf,sizeof(buf),fp) != NULL){
         sscanf(buf,"%lf",&val);
         
-        a=ave_online( val,ave,n);
-        b=var_online( val, ave, square_ave,n);
-        c=n*b/(n-1);
+        average=ave_online( val,ave,n);
+        variance=var_online( val, ave, square_ave,n);
+        estvariance=n*variance/(n-1);
         square_ave=ave_online(val*val,square_ave,n);
         n=n+1;
-        ave=a;
+        ave=average;
         
     }
 
@@ -42,17 +42,17 @@ int main(void)
         exit(EXIT_FAILURE);
     }
 
-    printf("average:%f\n",a);
-    printf("variance:%f\n",b);
-    printf("est.average:%f\n",a);
-    printf("est.variance:%f\n",c);
+    printf("average:%f\n",average);
+    printf("variance:%f\n",variance);
+    printf("est.average:%f\n",average);
+    printf("est.variance:%f\n",estvariance);
     return 0;
 }
 
 double ave_online(double val,double ave,double n){
-    return (((n-1)/n)*ave)+(val/n);
+    return ((ave*(n-1)/n))+(val/n);
 }
 
 double var_online(double val,double ave,double square_ave,double n){
-    return (((n-1)*square_ave/n)+(val*val/n))-(((n-1)*ave/n)+(val/n))*(((n-1)*ave/n)+(val/n));
+    return (((n-1)*square_ave/n)+(val*val/n))-((ave*((n-1)/n)+(val/n)))*((ave*((n-1)/n)+(val/n)));
 }
