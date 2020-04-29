@@ -3,15 +3,14 @@
 #include <string.h>
 #include <math.h>
 
-extern double p_stdnorm(double z);
+extern double p_stdnorm(double y);
 
 int main(void)
 {
-    double val;
+    double val,yA=0,yB=0,pA=0,pB=0,L_A=1,L_B=1,muA=170.8,sigmaA=5.43,muB=169.7,sigmaB=5.5;
     char fname[FILENAME_MAX];
     char buf[256];
     FILE* fp;
-    double L1=1,L2=1;
 
     printf("input the filename of sample:");
     fgets(fname,sizeof(fname),stdin);
@@ -26,6 +25,14 @@ int main(void)
 
     while(fgets(buf,sizeof(buf),fp) != NULL){
         sscanf(buf,"%lf",&val);
+        yA=(val-muA)/sigmaA;
+        pA=p_stdnorm(yA);
+        L_A=L_A*pA;
+
+        yB=(val-muB)/sigmaB;
+        pB=p_stdnorm(yB);
+        L_B=L_B*pB;
+
 
 
     
@@ -39,16 +46,16 @@ int main(void)
         exit(EXIT_FAILURE);
     }
 
-    printf("L_A: %f\n",max_val);
-    printf("L_B: %f\n",min_val);
+    printf("L_A: %f\n",L_A);
+    printf("L_B: %f\n",L_B);
 
     return 0;
 
 
 }
 
-double p_stdnorm(double z)
+double p_stdnorm(double y)
 {
-    return 1/sqrt(2*M_PI) * exp(-z*z/2);
+    return 1/sqrt(2*M_PI) * exp(-y*y/2)；
 }
 
