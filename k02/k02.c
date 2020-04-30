@@ -56,6 +56,6 @@ int main(void)
 
 double p_stdnorm(double y)
 {
-    return 1/sqrt(2*M_PI) * exp(-y*y/2)；
+    return 1/sqrt(2*M_PI) * exp(-y*y/2);
 }
 
