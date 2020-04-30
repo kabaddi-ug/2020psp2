@@ -47,6 +47,17 @@ bb35319026 瀧井祐自
 - l.52~54 平均を求める自作関数
 - l.56~58 分散の自作関数
 
+## 入出力結果
+
+```
+input the filename of sample:../sample/heights_male.csv
+the filename of sample: ../sample/heights_male.csv
+sample mean：
+sample variance：
+population mean (estimated)：
+population variance (estimated)：
+```
+
 ## 修正履歴
 
 [コメント1]
