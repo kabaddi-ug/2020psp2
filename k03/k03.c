@@ -14,11 +14,20 @@ extern double r_stdnorm(void);
 
 int main(int argc, char* argv[])
 {
+    
     int num_dummy;
     double mu;
     double sigma;
     int i;
-    double dummy;
+    double dummy=0;
+
+    
+    if(argc<4){return 1;}
+    sscanf(argv[1], "%lf" ,&mu);
+    sscanf(argv[2], "%lf" ,&sigma);
+    sscanf(argv[3], "%d" ,&num_dummy);
+    
+    
 
 
 
@@ -31,13 +40,14 @@ int main(int argc, char* argv[])
     printf("============================================\n");
 
     srand(RAND_SEED);
-    for(  ){
-        /* r_stdnormを使って，1人のデータを捏造 */
-        dummy =   ;
+    for( i=1; i<=num_dummy; i++ )
+        {
+          dummy=r_stdnorm()*sigma+mu;  
         printf("%5.2lf\n",dummy);
-    }
+        }
+    
 
-    return EXIT_SUCCESS;
+    return EXIT_SUCCESS；
 }
 
 double r_unif(void)
