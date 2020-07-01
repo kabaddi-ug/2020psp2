@@ -12,7 +12,7 @@ struct Hdata
 
 int main(void)
 {   
-    int id,i=1,ID;
+    int id,i=1,ID,data1;
     int gender;
     double height;
 
@@ -32,6 +32,7 @@ int main(void)
     }
 
     while(fgets(buf,sizeof(buf),fp) != NULL){
+        sscanf(buf,"%d","%lf",&gender,&height);
         sscanf(buf,"%d","%lf",&gender,&height);
         
         struct Hdata data1[14];
@@ -55,7 +56,7 @@ int main(void)
         fputs("File open error\n",stderr);
         exit(EXIT_FAILURE);
     }
-    i=0;
+    i=1;
     while(fgets(buf,sizeof(buf),fp) != NULL){
         sscanf(buf,"%d",&id);
 
