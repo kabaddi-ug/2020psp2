@@ -31,7 +31,7 @@ int main(void)
         fputs("File open error\n",stderr);
         exit(EXIT_FAILURE);
     }
-
+    fgets(buf, sizeof(buf),fp);
     while(fgets(buf,sizeof(buf),fp) != NULL){
         sscanf(buf,"%d %lf",&gender,&height);
         
@@ -73,6 +73,7 @@ int main(void)
 
     printf("Which ID's data do you want?\n");
     scanf("%d", &ID);
+    
     if(ID==data1[i].Id)
     {
         printf("ID : %d\n",ID);
@@ -90,6 +91,7 @@ int main(void)
     {
         printf("NO data\n");
     }
+    
 
     return 0;
 
