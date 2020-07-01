@@ -12,9 +12,10 @@ struct Hdata
 
 int main(void)
 {   
-    int id,i=1,ID,data1;
+    int id,i=1,ID;
     int gender;
     double height;
+    struct Hdata data1[14];
 
   char fname[FILENAME_MAX];
     char buf[256];
@@ -23,7 +24,7 @@ int main(void)
     printf("input the filename of sample:");
     fgets(fname,sizeof(fname),stdin);
     fname[strlen(fname)-1] = '\0';
-    printf("the filename of sample: %s\n",fname);
+    printf("the filename of sample height: %s\n",fname);
 
      fp = fopen(fname,"r");
     if(fp==NULL){
@@ -32,10 +33,9 @@ int main(void)
     }
 
     while(fgets(buf,sizeof(buf),fp) != NULL){
-        sscanf(buf,"%d","%lf",&gender,&height);
-        sscanf(buf,"%d","%lf",&gender,&height);
+        sscanf(buf,"%d %lf",&gender,&height);
         
-        struct Hdata data1[14];
+    
         data1[i].Gender=gender;
         data1[i].Height=height;
         i++;
@@ -46,7 +46,7 @@ int main(void)
         exit(EXIT_FAILURE);
          }
 
-       printf("input the filename of sample:");
+       printf("input the filename of sample ID:");
     fgets(fname,sizeof(fname),stdin);
     fname[strlen(fname)-1] = '\0';
     printf("the filename of sample: %s\n",fname);
@@ -73,7 +73,7 @@ int main(void)
 
     printf("Which ID's data do you want?\n");
     scanf("%d", &ID);
-    if(ID==id)
+    if(ID==data1[i].Id)
     {
         printf("ID : %d\n",ID);
         if(gender==1)
