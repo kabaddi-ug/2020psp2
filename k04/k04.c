@@ -12,7 +12,7 @@ struct Hdata
 
 int main(void)
 {   
-    int id,i=1,ID;
+    int id,i=0,ID,isave=-1;
     int gender;
     double height;
     struct Hdata data1[14];
@@ -21,10 +21,10 @@ int main(void)
     char buf[256];
     FILE* fp;
 
-    printf("input the filename of sample:");
+    printf("input the filename of sample height:");
     fgets(fname,sizeof(fname),stdin);
     fname[strlen(fname)-1] = '\0';
-    printf("the filename of sample height: %s\n",fname);
+    printf("the filename of sample : %s\n",fname);
 
      fp = fopen(fname,"r");
     if(fp==NULL){
@@ -33,7 +33,7 @@ int main(void)
     }
     fgets(buf, sizeof(buf),fp);
     while(fgets(buf,sizeof(buf),fp) != NULL){
-        sscanf(buf,"%d %lf",&gender,&height);
+        sscanf(buf,"%d ,%lf",&gender,&height);
         
     
         data1[i].Gender=gender;
@@ -56,7 +56,7 @@ int main(void)
         fputs("File open error\n",stderr);
         exit(EXIT_FAILURE);
     }
-    i=1;
+    i=0;
     while(fgets(buf,sizeof(buf),fp) != NULL){
         sscanf(buf,"%d",&id);
 
@@ -73,24 +73,29 @@ int main(void)
 
     printf("Which ID's data do you want?\n");
     scanf("%d", &ID);
+    for(i=0; i<14; ++i){
+    if(data1[i].Id==ID){
+        isave=i;
+        break;
     
-    if(ID==data1[i].Id)
-    {
+    }
+    }
+    if(isave>=0){
         printf("ID : %d\n",ID);
-        if(gender==1)
+        if(data1[i].Gender==1)
         {
             printf("gender : Male\n");
         }
-        else
-        {
+        else{
+        
             printf("gender : Female\n");
         }
-        printf("height : %lf\n",height);
+        printf("height : %4.1lf\n", data1[i].Height);
+    }else{
+        printf("No data\n");
     }
-    else
-    {
-        printf("NO data\n");
-    }
+    
+    
     
 
     return 0;
