@@ -12,7 +12,7 @@ struct Hdata
 
 int main(void)
 {   
-    int id,i=0,ID,isave=-1;
+    int id,i=0,ID;
     int gender;
     double height;
     struct Hdata data1[14];
@@ -75,12 +75,11 @@ int main(void)
     scanf("%d", &ID);
     for(i=0; i<14; ++i){
     if(data1[i].Id==ID){
-        isave=i;
-        break;
+        
     
-    }
-    }
-    if(isave>=0){
+    
+    
+    
         printf("ID : %d\n",ID);
         if(data1[i].Gender==1)
         {
@@ -91,14 +90,17 @@ int main(void)
             printf("gender : Female\n");
         }
         printf("height : %4.1lf\n", data1[i].Height);
-    }else{
+        return 0;
+    }}
+    {
         printf("No data\n");
     }
     
     
     
+    
 
-    return 0;
+    
 
 }
 
