@@ -92,10 +92,10 @@ int main(void)
         printf("height : %4.1lf\n", data1[i].Height);
         return 0;
     }}
-    {
+    
         printf("---\n");
         printf("No data\n");
-    }
+    
     
     
     
