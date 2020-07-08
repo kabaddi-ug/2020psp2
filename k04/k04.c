@@ -78,7 +78,7 @@ int main(void)
         
     
     
-    
+        printf("---\n");
     
         printf("ID : %d\n",ID);
         if(data1[i].Gender==1)
@@ -93,6 +93,7 @@ int main(void)
         return 0;
     }}
     {
+        printf("---\n");
         printf("No data\n");
     }
     
